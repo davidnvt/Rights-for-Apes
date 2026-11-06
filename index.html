@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>IELTS Reading: Rights for Apes | Nguyễn Văn Thắng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-body: #f0f4fa;
+            --text-primary: #1a2c3e;
+            --accent: #2c6e5c;
+            --accent-light: #e0f0ea;
+            --border-light: #e9edf2;
+            --quiz-bg: #ffffff;
+            --card-shadow: 0 8px 20px rgba(0,0,0,0.04);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #eef2f9;
+            height: 100vh;
+            overflow: hidden;
+            font-size: 0.8rem;
+            color: #1e2f3c;
+        }
+        .dashboard { display: flex; height: 100%; width: 100%; }
+        .reading-section {
+            width: 50%; background: #fff; overflow-y: auto;
+            padding: 1.6rem 1.8rem; border-right: 1px solid var(--border-light);
+            box-shadow: 2px 0 12px rgba(0,0,0,0.02);
+        }
+        .quiz-section {
+            width: 50%; background: #f8fafd; overflow-y: auto; padding: 1.6rem 1.5rem;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #e9ecef; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #b9c4cf; border-radius: 10px; }
+        h1 {
+            font-family: 'Merriweather', serif; font-size: 1.6rem; font-weight: 700;
+            background: linear-gradient(135deg, #1f3b4c, #2c5a6e);
+            background-clip: text; -webkit-background-clip: text; color: transparent;
+            margin-bottom: 0.2rem; letter-spacing: -0.2px;
+        }
+        .brand-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: #f1f5f9; padding: 5px 14px; border-radius: 60px;
+            font-weight: 500; font-size: 0.7rem; color: #1e5f7a;
+            text-decoration: none; transition: 0.2s; margin-bottom: 1rem;
+        }
+        .brand-group {
+            display: flex; flex-wrap: wrap; justify-content: space-between;
+            align-items: center; margin: 0.3rem 0 0.8rem;
+        }
+        .badge-passage {
+            background: #eef2fa; padding: 5px 12px; border-radius: 60px;
+            font-size: 0.65rem; font-weight: 500; color: #2c5a6e;
+        }
+        p {
+            font-family: 'Merriweather', serif; font-size: 0.75rem;
+            line-height: 1.65; margin-bottom: 0.9rem; text-align: justify;
+        }
+        .reading-section strong, .reading-section b { font-weight: 700; color: #1e4a62; }
+        .quiz-card {
+            background: var(--quiz-bg); border-radius: 22px; margin-bottom: 24px;
+            padding: 1.1rem 1.3rem; box-shadow: var(--card-shadow);
+            border: 1px solid #eef2f8;
+        }
+        .section-title {
+            font-weight: 700; font-size: 0.9rem; margin-bottom: 0.8rem;
+            color: #1f3e48; border-left: 4px solid var(--accent); padding-left: 10px;
+        }
+        .mc-option, .yn-radio-group {
+            display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; margin-bottom: 8px;
+        }
+        .mc-option label, .yn-radio-group label {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: #f1f5f9; padding: 4px 14px; border-radius: 32px;
+            font-size: 0.7rem; cursor: pointer; border: 1px solid #e2e8f0; transition: 0.1s;
+        }
+        .mc-option input, .yn-radio-group input { margin: 0; accent-color: var(--accent); }
+        .question-block {
+            margin-bottom: 20px; border-bottom: 1px dashed #e2e8f0; padding-bottom: 12px;
+        }
+        .question-text {
+            font-weight: 700; font-size: 0.75rem; margin-bottom: 8px; color: #1e3a45;
+        }
+        .btn-submit {
+            background: var(--accent); color: white; border: none; padding: 10px 18px;
+            border-radius: 44px; font-weight: 700; font-size: 0.75rem; cursor: pointer;
+            width: 100%; transition: 0.2s; margin-top: 12px;
+            box-shadow: 0 2px 6px rgba(44,156,110,0.2);
+        }
+        .btn-submit:hover { background: #1e5a48; transform: scale(0.98); }
+        .score-area {
+            background: linear-gradient(105deg, #1f3e48, #17323b);
+            border-radius: 40px; padding: 10px 18px; margin-bottom: 22px;
+            display: flex; justify-content: space-between; align-items: center;
+            color: white; font-weight: 600; font-size: 0.8rem;
+        }
+        .reset-quiz {
+            background: rgba(255,255,245,0.2); border: none; color: white;
+            border-radius: 40px; padding: 5px 14px; cursor: pointer;
+            font-size: 0.7rem; transition: 0.2s;
+        }
+        .reset-quiz:hover { background: rgba(255,255,245,0.35); }
+        .explanation-box {
+            background: #eef2f9; border-radius: 16px; padding: 12px 16px;
+            font-size: 0.7rem; margin-top: 10px; border-left: 4px solid var(--accent);
+            display: none; line-height: 1.65;
+        }
+        .explanation-box.show { display: block; }
+        .instruction-text {
+            background: #f0f4fa; padding: 10px 14px; border-radius: 18px;
+            margin-bottom: 14px; font-size: 0.7rem; line-height: 1.5;
+        }
+        .instruction-text ul { margin: 6px 0 4px 18px; }
+        .instruction-text li { margin-bottom: 2px; }
+        .summary-paragraph {
+            font-size: 0.75rem; line-height: 1.7; margin: 16px 0;
+            background: #fffef7; padding: 12px 16px; border-radius: 20px;
+            border: 1px solid #e9e5d8;
+        }
+        .blank-with-number {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: #f5f7fb; border-radius: 40px; padding: 2px 10px 2px 6px;
+            margin: 0 4px; border: 1px solid #dce3ec;
+        }
+        .blank-number {
+            font-weight: 800; background: #e0e7ef; border-radius: 30px;
+            padding: 2px 8px; font-size: 0.65rem; color: #1e4a5f;
+        }
+        .blank-select {
+            border: none; background: transparent; font-weight: 600;
+            font-size: 0.7rem; padding: 4px 2px; cursor: pointer; color: #2c6e5c;
+        }
+        .blank-select:focus { outline: none; }
+        .options-panel {
+            background: #f3f6fc; border-radius: 24px; padding: 12px 16px;
+            margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 12px;
+            border: 1px solid #e2edf2;
+        }
+        .option-badge {
+            background: white; border-radius: 32px; padding: 4px 12px;
+            font-size: 0.7rem; font-weight: 500; box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            border: 1px solid #cbdbe0;
+        }
+        .word-detail {
+            background: #fff2df; border-radius: 12px; padding: 6px 10px;
+            margin-top: 6px; font-size: 0.65rem;
+        }
+        .synonym-tag {
+            display: inline-block; background: #e8f0fe; border-radius: 20px;
+            padding: 2px 10px; margin: 2px 2px; font-size: 0.65rem; color: #1e4a62;
+        }
+        .synonym-arrow { color: #2c6e5c; font-weight: 700; margin: 0 4px; }
+        .viet-explain {
+            background: #fff8e7; border-radius: 10px; padding: 8px 12px;
+            margin-top: 8px; border-left: 3px solid #e6a817;
+        }
+        .viet-explain strong { color: #b07d0a; }
+        .wrong-option {
+            background: #fff0f0; border-radius: 8px; padding: 6px 10px;
+            margin-top: 6px; border-left: 3px solid #d9534f;
+        }
+        .wrong-option strong { color: #c9302c; }
+        .q-prefix {
+            display: inline-block; background: #2c6e5c; color: #fff;
+            border-radius: 20px; padding: 1px 10px; font-size: 0.65rem;
+            font-weight: 700; margin-right: 6px;
+        }
+        @media (max-width: 950px) {
+            body { overflow: auto; height: auto; }
+            .dashboard { flex-direction: column; }
+            .reading-section, .quiz-section { width: 100%; height: auto; border-right: none; }
+        }
+    </style>
+</head>
+<body>
+<div class="dashboard">
+    <!-- LEFT: READING PASSAGE -->
+    <div class="reading-section">
+        <div>
+            <h1>🦍 Rights for Apes</h1>
+            <div class="brand-group">
+                <a href="https://www.facebook.com/nvtielts/" class="brand-link" target="_blank"><i class="fab fa-facebook"></i> Nguyễn Văn Thắng - Academic Reading</a>
+                <span class="badge-passage"><i class="fas fa-book-open"></i> IELTS Reading Passage 3</span>
+            </div>
+            <p style="font-style:italic; font-size:0.7rem;">Humans have rights, other animals don't – no matter how human-like they are. Kate Douglas investigates the controversial campaign to get that changed.</p>
+        </div>
+        <p><strong>READING PASSAGE 3</strong><br><strong>Rights for apes</strong></p>
+        <p><em>Humans have rights, other animals don't – no matter how human-like they are. Kate Douglas investigates the controversial campaign to get that changed.</em></p>
+        <p>A growing number of people across the world are attempting to persuade governments to grant great apes rudimentary 'human rights'. They argue that great apes are enough like us to deserve special treatment over other animals. The campaign has gathered momentum over the past few years and is stirring up a good deal of controversy. Various religious groups and the human rights charity, Amnesty International, point out that we have a long way to go to secure rights for humans before we start thinking about animals. Other critics argue that the proposal is not radical enough and should be extended to other intelligent social animals such as elephants and dolphins, and potentially to all animals.</p>
+        <p>The Great Ape Project (GAP) is an international organisation that has been lobbying for legal rights for apes since 1993. The project has had some degree of success. New Zealand considered the possibility of extending human rights to great apes in 1999 as part of its new animal welfare bill. In the end, the bill did not go as far as granting apes individual legal rights, but did give them special status. Testing or teaching involving apes now requires government approval and must demonstrate that any likely benefits are not outweighed by harm to the individual animal. In effect that means no biomedical testing, only studies that increase our understanding of these species. The practice of using apes in biomedical research has also effectively ended in Europe now.</p>
+        <p>So with all this legal protection in place, what's the big deal about individual rights? GAP campaigners say that these regulations don't go far enough and they still allow people who own great apes to lawfully neglect their needs. Michele Stumpe, a lawyer based in the US, points out that without rights, animals are mere property and their owners have no obligation to consider their best interests. Legally, however, only 'persons' can have 'rights', which is why the law needs to be changed to recognise the 'personhood' of apes.</p>
+        <p>Stumpe says that one reason for the resistance is the use of terms like 'rights' and 'personhood'. 'It seems like a radical idea and that scares people, but when we talk about rights, it really just means protection in layman's terms,' she says. For the philosopher Peter Singer (Princeton University), the opposition runs deeper than just semantics. He says the great apes are 'the victims of arbitrary discrimination', or what he calls 'speciesism'. He makes an argument on moral grounds for extending human rights to all beings that show intelligence and awareness – including some level of self-awareness – and have emotional and social needs. That means going beyond the boundaries of our own species – and therein lies the problem. 'It's that gulf between humans and animals that people want to maintain,' he says. Others take a similar view. It requires a radical shift in people's ideas about themselves, according to Ian Redmond, chief consultant for the UN Great Apes Survival Project. Gary Francione, a leading animal-rights lawyer from Rutgers University in Newark, New Jersey, and a member of the original GAP group, calls it 'spiritual superiority. We just think we're special because we're human.'</p>
+        <p>Those less sympathetic to the animal rights agenda see things rather differently. Some argue that beyond the species barrier lies a slippery slope. 'Mice share around 90 per cent of human DNA: should they get 90 per cent of human rights?' asks geneticist Steve Jones from University College, London. He is concerned that giving rights to great apes would be the beginning of the end of all research with animals. Singer accepts that there is a question about where you draw the line, but sees no reason for that to stop society from taking the first step. 'The strongest and clearest case is with great apes, but we're open to arguments that it could be extended to other mammals,' he says.</p>
+        <p>Some take it even further. Francione no longer supports the idea of extending rights to great apes on the basis that their minds are like ours. Instead, he argues that all sentient beings should have just one right: the right not to be treated as the property of humans. He believes his approach has the advantage of simplicity, because sentience – the ability to feel pain or distress – is an objective quality, and because it would bring an end to captive animals altogether. It would make it illegal to breed any animals, including agricultural animals and even pets. His ideas highlight a logical inconsistency at the heart of the GAP agenda: it seeks to give legal rights to animals but does not give them the right to be free. Francione's approach is certainly several steps too far for many people.</p>
+        <p>It is not clear what GAP's proposals mean for wild apes, and even some of the animals' most outspoken defenders are not convinced that giving them human rights is the best way to protect them. Primatologist Frans de Waal, from the Yerkes Regional Primate Research Center in Atlanta, US, says 'The concept of rights applies only to those capable of carrying responsibilities within our society.' He believes the emphasis should be on the obligations humans have towards other animals, both for their care and for their conservation.</p>
+        <p>Redmond, on the other hand, suggests that applying GAP principles to wild populations might lead to increased penalties for killing apes or even give them land rights, though he admits the latter is unlikely. At the very least, an increased regard for the well-being of apes among people in western countries would lead to a decreased demand for animals being kidnapped from the wild and then exported to zoos, wildlife parks or private collectors.</p>
+    </div>
+
+    <!-- RIGHT: QUIZ SECTION -->
+    <div class="quiz-section">
+        <div class="score-area">
+            <span><i class="fas fa-chart-line"></i> IELTS READING SCORE</span>
+            <span id="scoreDisplay">0 / 14</span>
+            <button class="reset-quiz" id="resetQuizBtn"><i class="fas fa-sync-alt"></i> Reset</button>
+        </div>
+
+        <!-- QUESTIONS 27–31 : Summary Completion -->
+        <div class="quiz-card">
+            <div class="section-title">📌 Questions 27–31</div>
+            <div class="instruction-text">
+                Complete the summary using the list of words, <strong>A–J</strong>, below.
+            </div>
+            <div class="options-panel">
+                <span class="option-badge"><strong>A</strong> experience</span>
+                <span class="option-badge"><strong>B</strong> well-being</span>
+                <span class="option-badge"><strong>C</strong> knowledge</span>
+                <span class="option-badge"><strong>D</strong> regulations</span>
+                <span class="option-badge"><strong>E</strong> charities</span>
+                <span class="option-badge"><strong>F</strong> research</span>
+                <span class="option-badge"><strong>G</strong> dolphins</span>
+                <span class="option-badge"><strong>H</strong> needs</span>
+                <span class="option-badge"><strong>J</strong> species</span>
+            </div>
+            <div class="summary-paragraph">
+                Some people believe that the campaign to grant human rights to the great apes does not go far enough. They want it to include other
+                <span class="blank-with-number"><span class="blank-number">27</span>
+                <select id="select27" class="blank-select"><option value="">--</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="J">J</option></select>
+                </span>
+                that are judged to demonstrate understanding. One country introduced
+                <span class="blank-with-number"><span class="blank-number">28</span>
+                <select id="select28" class="blank-select"><option value="">--</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="J">J</option></select>
+                </span>
+                which went some way to protecting the apes. As a result, anyone who is interested in using apes for
+                <span class="blank-with-number"><span class="blank-number">29</span>
+                <select id="select29" class="blank-select"><option value="">--</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="J">J</option></select>
+                </span>
+                must first obtain the official go-ahead from the state. They will have to prove that any advances gained do not come at the expense of the animal's
+                <span class="blank-with-number"><span class="blank-number">30</span>
+                <select id="select30" class="blank-select"><option value="">--</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="J">J</option></select>
+                </span>
+                . So researchers can now only work on projects that may lead to the acquisition of further
+                <span class="blank-with-number"><span class="blank-number">31</span>
+                <select id="select31" class="blank-select"><option value="">--</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="J">J</option></select>
+                </span>
+                about the way apes function and interact.
+            </div>
+            <!-- EXPLANATIONS FOR 27–31 (each blank) -->
+            <div id="exp-27" class="explanation-box"></div>
+            <div id="exp-28" class="explanation-box"></div>
+            <div id="exp-29" class="explanation-box"></div>
+            <div id="exp-30" class="explanation-box"></div>
+            <div id="exp-31" class="explanation-box"></div>
+            <!-- ANSWER KEY SUMMARY -->
+            <div id="exp-summary" class="explanation-box"></div>
+        </div>
+
+        <!-- QUESTIONS 32–36 : Multiple Choice -->
+        <div class="quiz-card">
+            <div class="section-title">🔍 Questions 32–36</div>
+            <div class="instruction-text">Choose the correct letter, <strong>A, B, C or D</strong>.</div>
+
+            <div class="question-block">
+                <div class="question-text"><strong>32.</strong> Why does Stumpe refer to 'layman's terms'?</div>
+                <div class="mc-option">
+                    <label><input type="radio" name="q32" value="A"> A. to show that many people hold extreme views about animals.</label>
+                    <label><input type="radio" name="q32" value="B"> B. to suggest that campaigners are reluctant to criticise the law.</label>
+                    <label><input type="radio" name="q32" value="C"> C. to suggest that such inflated terminology is unnecessary.</label>
+                    <label><input type="radio" name="q32" value="D"> D. to argue that most people are not interested in protecting animals.</label>
+                </div>
+                <div id="exp-32" class="explanation-box"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-text"><strong>33.</strong> According to Singer, what is the root of the problem?</div>
+                <div class="mc-option">
+                    <label><input type="radio" name="q33" value="A"> A. Levels of intelligence and awareness differ between species.</label>
+                    <label><input type="radio" name="q33" value="B"> B. People disagree on how intelligent animals like apes are.</label>
+                    <label><input type="radio" name="q33" value="C"> C. Moral principles are not easy for everyone to understand.</label>
+                    <label><input type="radio" name="q33" value="D"> D. Human beings want to see themselves as separate from animals.</label>
+                </div>
+                <div id="exp-33" class="explanation-box"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-text"><strong>34.</strong> If Francione's current idea was implemented,</div>
+                <div class="mc-option">
+                    <label><input type="radio" name="q34" value="A"> A. sentient animals could not be kept in cages.</label>
+                    <label><input type="radio" name="q34" value="B"> B. any form of large-scale agriculture would cease to exist.</label>
+                    <label><input type="radio" name="q34" value="C"> C. great apes would be granted all the same rights as humans.</label>
+                    <label><input type="radio" name="q34" value="D"> D. people could no longer offer shelter to an animal.</label>
+                </div>
+                <div id="exp-34" class="explanation-box"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-text"><strong>35.</strong> What is the writer's attitude to Francione's theory?</div>
+                <div class="mc-option">
+                    <label><input type="radio" name="q35" value="A"> A. She is suspicious of the reasoning behind it.</label>
+                    <label><input type="radio" name="q35" value="B"> B. She is doubtful of its chances of being generally accepted.</label>
+                    <label><input type="radio" name="q35" value="C"> C. She is reassured by the impartial way it is expressed.</label>
+                    <label><input type="radio" name="q35" value="D"> D. She is pleased by its logical development.</label>
+                </div>
+                <div id="exp-35" class="explanation-box"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-text"><strong>36.</strong> How does de Waal change the perspective of the animal rights discussion?</div>
+                <div class="mc-option">
+                    <label><input type="radio" name="q36" value="A"> A. He recommends focusing on the way people look after animals.</label>
+                    <label><input type="radio" name="q36" value="B"> B. He would give rights only to those animals with a moral sense.</label>
+                    <label><input type="radio" name="q36" value="C"> C. He says that society should learn to be responsible for all of humanity.</label>
+                    <label><input type="radio" name="q36" value="D"> D. He thinks that conservation of endangered species should come first.</label>
+                </div>
+                <div id="exp-36" class="explanation-box"></div>
+            </div>
+        </div>
+
+        <!-- QUESTIONS 37–40 : YES/NO/NOT GIVEN -->
+        <div class="quiz-card">
+            <div class="section-title">✅ Questions 37–40</div>
+            <div class="instruction-text">
+                Do the following statements agree with the claims of the writer?<br>
+                Write <strong>YES</strong> if the statement agrees, <strong>NO</strong> if it contradicts, or <strong>NOT GIVEN</strong> if it is impossible to say.
+            </div>
+
+            <div class="question-block">
+                <div class="question-text"><strong>37.</strong> Particularly valuable animals in captivity are more likely to be protected by law.</div>
+                <div class="yn-radio-group">
+                    <label><input type="radio" name="q37" value="YES"> Yes</label>
+                    <label><input type="radio" name="q37" value="NO"> No</label>
+                    <label><input type="radio" name="q37" value="NOT GIVEN"> Not Given</label>
+                </div>
+                <div id="exp-37" class="explanation-box"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-text"><strong>38.</strong> de Waal highlights the need to give human rights to higher order animals.</div>
+                <div class="yn-radio-group">
+                    <label><input type="radio" name="q38" value="YES"> Yes</label>
+                    <label><input type="radio" name="q38" value="NO"> No</label>
+                    <label><input type="radio" name="q38" value="NOT GIVEN"> Not Given</label>
+                </div>
+                <div id="exp-38" class="explanation-box"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-text"><strong>39.</strong> If GAP beliefs were implemented in the wild, the survival rate of the larger apes would increase.</div>
+                <div class="yn-radio-group">
+                    <label><input type="radio" name="q39" value="YES"> Yes</label>
+                    <label><input type="radio" name="q39" value="NO"> No</label>
+                    <label><input type="radio" name="q39" value="NOT GIVEN"> Not Given</label>
+                </div>
+                <div id="exp-39" class="explanation-box"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-text"><strong>40.</strong> If people in Western countries, for example, learned to consider apes' needs, fewer apes would be captured for sale.</div>
+                <div class="yn-radio-group">
+                    <label><input type="radio" name="q40" value="YES"> Yes</label>
+                    <label><input type="radio" name="q40" value="NO"> No</label>
+                    <label><input type="radio" name="q40" value="NOT GIVEN"> Not Given</label>
+                </div>
+                <div id="exp-40" class="explanation-box"></div>
+            </div>
+        </div>
+
+        <button id="submitBtn" class="btn-submit">✅ Check Answers & Show Explanations</button>
+    </div>
+</div>
+
+<script>
+    // CORRECT ANSWERS
+    const CORRECT = {
+        q27: "J", q28: "D", q29: "F", q30: "B", q31: "C",
+        q32: "C", q33: "D", q34: "A", q35: "B", q36: "A",
+        q37: "NOT GIVEN", q38: "NO", q39: "NOT GIVEN", q40: "YES"
+    };
+
+    let submitted = false;
+
+    function getSelectValue(id) {
+        const sel = document.getElementById(id);
+        return sel ? sel.value : "";
+    }
+
+    function getRadioValue(name) {
+        const radio = document.querySelector(`input[name="${name}"]:checked`);
+        return radio ? radio.value : "";
+    }
+
+    function collectAnswers() {
+        return {
+            q27: getSelectValue("select27"), q28: getSelectValue("select28"), q29: getSelectValue("select29"),
+            q30: getSelectValue("select30"), q31: getSelectValue("select31"),
+            q32: getRadioValue("q32"), q33: getRadioValue("q33"), q34: getRadioValue("q34"),
+            q35: getRadioValue("q35"), q36: getRadioValue("q36"),
+            q37: getRadioValue("q37"), q38: getRadioValue("q38"), q39: getRadioValue("q39"),
+            q40: getRadioValue("q40")
+        };
+    }
+
+    function getExplanation(qNum, userAns, correctAns) {
+        const explanations = {
+            // ===== Q27 =====
+            27: {
+                passage: "<em>\"Other critics argue that the proposal is not radical enough and should be extended to other <strong>intelligent social animals such as elephants and dolphins</strong>, and potentially to all animals.\"</em>",
+                synonym: "<span class='synonym-tag'>other intelligent social animals (elephants, dolphins…)</span> <span class='synonym-arrow'>→</span> <span class='synonym-tag'>other species that are judged to demonstrate understanding</span><br>• \"intelligent\" = \"judged to demonstrate understanding\" (được đánh giá là có hiểu biết)<br>• \"elephants and dolphins\" chỉ là <strong>ví dụ</strong> thuộc các <strong>loài (species)</strong> khác, nên từ cần điền là <strong>species</strong>, không phải \"dolphins\"",
+                viet: "<strong>Giải thích chi tiết:</strong> Đoạn 1 nói rằng những người phản đối cho rằng đề xuất này chưa đủ triệt để và nên mở rộng cho <strong>các loài động vật thông minh có tính xã hội khác</strong>, ví dụ như voi và cá heo. Câu tóm tắt viết \"other ___ that are judged to demonstrate understanding\" – các <strong>loài</strong> khác được đánh giá là có hiểu biết. \"Intelligent social animals such as elephants and dolphins\" cho thấy voi và cá heo chỉ là ví dụ, còn từ khái quát cần điền là <strong>species</strong> (loài). Vì vậy đáp án là <strong>J. species</strong>.",
+                answer: "J. species"
+            },
+            // ===== Q28 =====
+            28: {
+                passage: "<em>\"New Zealand considered the possibility of extending human rights to great apes in 1999 as part of its new <strong>animal welfare bill</strong>. In the end, the bill did not go as far as granting apes individual legal rights, but did give them special status.\"</em>",
+                synonym: "<span class='synonym-tag'>animal welfare bill</span> <span class='synonym-arrow'>→</span> <span class='synonym-tag'>regulations</span><br>• \"bill\" = dự luật → một tập hợp các <strong>quy định (regulations)</strong><br>• \"gave them special status\" = \"went some way to protecting the apes\" (phần nào bảo vệ được loài vượn)",
+                viet: "<strong>Giải thích chi tiết:</strong> Đoạn 2 kể rằng New Zealand đã xem xét việc mở rộng quyền cho loài vượn lớn như một phần trong <strong>dự luật phúc lợi động vật (animal welfare bill)</strong> mới. Cuối cùng, dự luật không trao quyền cá nhân nhưng đã trao cho chúng quy chế đặc biệt. \"Bill\" (dự luật) chính là một dạng <strong>quy định (regulations)</strong>. Câu tóm tắt nói \"One country introduced ___ which went some way to protecting the apes\" – một quốc gia đã ban hành <strong>quy định</strong> phần nào bảo vệ loài vượn. Vậy đáp án là <strong>D. regulations</strong>.",
+                answer: "D. regulations"
+            },
+            // ===== Q29 =====
+            29: {
+                passage: "<em>\"<strong>Testing or teaching</strong> involving apes now requires <strong>government approval</strong> and must demonstrate that any likely benefits are not outweighed by harm to the individual animal.\"</em>",
+                synonym: "<span class='synonym-tag'>testing or teaching involving apes</span> <span class='synonym-arrow'>→</span> <span class='synonym-tag'>using apes for research</span><br>• \"testing or teaching\" = nghiên cứu (research)<br>• \"requires government approval\" = \"must first obtain the official go-ahead from the state\" (phải được nhà nước chấp thuận trước)",
+                viet: "<strong>Giải thích chi tiết:</strong> Đoạn 2 nói rằng việc <strong>thử nghiệm hoặc giảng dạy (testing or teaching)</strong> liên quan đến vượn giờ đây cần sự <strong>chấp thuận của chính phủ (government approval)</strong>. Câu tóm tắt viết \"anyone who is interested in using apes for ___ must first obtain the official go-ahead from the state\" – bất kỳ ai muốn sử dụng vượn cho <strong>nghiên cứu (research)</strong> đều phải được nhà nước chấp thuận trước. \"Testing or teaching\" chính là hoạt động nghiên cứu. Vậy đáp án là <strong>F. research</strong>.",
+                answer: "F. research"
+            },
+            // ===== Q30 =====
+            30: {
+                passage: "<em>\"any likely benefits are not outweighed by <strong>harm to the individual animal</strong>.\"</em>",
+                synonym: "<span class='synonym-tag'>not outweighed by harm to the individual animal</span> <span class='synonym-arrow'>→</span> <span class='synonym-tag'>do not come at the expense of the animal's well-being</span><br>• \"harm\" (tổn hại) là mặt đối lập của <strong>well-being</strong> (phúc lợi/sức khỏe)<br>• \"not outweighed by\" = \"do not come at the expense of\" (không đánh đổi bằng)",
+                viet: "<strong>Giải thích chi tiết:</strong> Đoạn 2 viết rằng lợi ích tiềm năng không được vượt trội hơn <strong>tổn hại đối với cá thể động vật (harm to the individual animal)</strong>. \"Harm\" (tổn hại) là từ trái nghĩa với <strong>well-being</strong> (phúc lợi, sức khỏe). Câu tóm tắt nói \"any advances gained do not come at the expense of the animal's ___\" – những tiến bộ đạt được không được đánh đổi bằng <strong>phúc lợi</strong> của động vật. Vậy đáp án là <strong>B. well-being</strong>.",
+                answer: "B. well-being"
+            },
+            // ===== Q31 =====
+            31: {
+                passage: "<em>\"only studies that <strong>increase our understanding</strong> of these species.\"</em>",
+                synonym: "<span class='synonym-tag'>increase our understanding</span> <span class='synonym-arrow'>→</span> <span class='synonym-tag'>acquisition of further knowledge</span><br>• \"increase our understanding\" = gia tăng hiểu biết = <strong>acquisition of further knowledge</strong> (thu được thêm kiến thức)<br>• \"these species\" → \"the way apes function and interact\" (cách vượn hoạt động và tương tác)",
+                viet: "<strong>Giải thích chi tiết:</strong> Đoạn 2 nói rằng chỉ những nghiên cứu <strong>gia tăng hiểu biết (increase our understanding)</strong> về các loài này mới được phép. Câu tóm tắt viết \"projects that may lead to the acquisition of further ___ about the way apes function and interact\" – những dự án có thể dẫn đến việc thu được thêm <strong>kiến thức</strong> về cách vượn hoạt động và tương tác. \"Increase our understanding\" đồng nghĩa với \"acquisition of further knowledge\". Vậy đáp án là <strong>C. knowledge</strong>.",
+                answer: "C. knowledge"
+            },
+            // ===== Q32 =====
+            32: {
+                passage: "<em>\"'It seems like a radical idea and that scares people, but when we talk about rights, it really just means protection in <strong>layman's terms</strong>,' she says.\"</em>",
+                synonym: "<span class='synonym-tag'>layman's terms</span> <span class='synonym-arrow'>→</span> <span class='synonym-tag'>simple, everyday language</span><br>• \"layman's terms\" = ngôn ngữ bình dân, đơn giản<br>• Stumpe nói \"rights\" nghe có vẻ radical (cấp tiến) và khiến người ta sợ, nhưng thực ra nó chỉ có nghĩa là \"protection\" (sự bảo vệ) trong ngôn ngữ đơn giản",
+                viet: "<strong>Giải thích chi tiết:</strong> Stumpe nói rằng một lý do khiến người ta phản đối là việc dùng các thuật ngữ như \"rights\" (quyền) và \"personhood\" (tư cách cá nhân). Cô ấy nói: \"Nó có vẻ là một ý tưởng cấp tiến và điều đó khiến người ta sợ, nhưng khi chúng ta nói về quyền, thực ra nó chỉ có nghĩa là sự bảo vệ trong <strong>ngôn ngữ bình dân (layman's terms)</strong>\". Điều này cho thấy Stumpe muốn nói rằng những thuật ngữ hoa mỹ, phức tạp như \"rights\" và \"personhood\" là <strong>không cần thiết</strong> – thực chất chỉ là \"protection\" mà thôi. Vậy đáp án là <strong>C. to suggest that such inflated terminology is unnecessary</strong> (để gợi ý rằng thuật ngữ phóng đại như vậy là không cần thiết).<br><br>❌ <strong>Tại sao các đáp án khác sai:</strong><br>• A: Không có thông tin về việc nhiều người có quan điểm cực đoan.<br>• B: Không liên quan đến việc những người vận động ngại chỉ trích pháp luật.<br>• D: Không nói về việc hầu hết mọi người không quan tâm đến bảo vệ động vật.",
+                answer: "C. to suggest that such inflated terminology is unnecessary."
+            },
+            // ===== Q33 =====
+            33: {
+                passage: "<em>\"That means going beyond the boundaries of our own species – and therein lies the problem. '<strong>It's that gulf between humans and animals that people want to maintain</strong>,' he says.\"</em>",
+                synonym: "<span class='synonym-tag'>the gulf between humans and animals that people want to maintain</span> <span class='synonym-arrow'>→</span> <span class='synonym-tag'>Human beings want to see themselves as separate from animals</span><br>• \"gulf\" = khoảng cách, sự chia cắt<br>• \"want to maintain\" = muốn duy trì, muốn giữ<br>• \"separate from\" = tách biệt khỏi",
+                viet: "<strong>Giải thích chi tiết:</strong> Singer lập luận trên cơ sở đạo đức rằng nên mở rộng quyền cho tất cả các sinh vật có trí tuệ và ý thức. Ông nói rằng điều đó có nghĩa là vượt ra ngoài ranh giới loài của chúng ta – và <strong>vấn đề nằm ở đó</strong>. Ông nói: \"Chính <strong>khoảng cách (gulf) giữa người và động vật</strong> mà người ta muốn duy trì\". Điều này có nghĩa là con người muốn giữ sự tách biệt giữa mình và động vật. Vậy gốc rễ của vấn đề là <strong>con người muốn thấy mình tách biệt khỏi động vật</strong>. Đáp án là <strong>D</strong>.<br><br>❌ <strong>Tại sao các đáp án khác sai:</strong><br>• A: Bài đọc không nói mức độ thông minh khác nhau giữa các loài là gốc rễ vấn đề.<br>• B: Không phải mọi người tranh cãi về mức độ thông minh của vượn.<br>• C: Không nói nguyên tắc đạo đức khó hiểu với mọi người.",
+                answer: "D. Human beings want to see themselves as separate from animals."
+            },
+            // ===== Q34 =====
+            34: {
+                passage: "<em>\"He argues that all sentient beings should have just one right: the right not to be treated as the property of humans ... because it would <strong>bring an end to captive animals altogether</strong>.\"</em>",
+                synonym: "<span class='synonym-tag'>bring an end to captive animals altogether</span> <span class='synonym-arrow'>→</span> <span class='synonym-tag'>sentient animals could not be kept in cages</span><br>• \"captive animals\" = động vật bị nuôi nhốt<br>• \"bring an end to\" = chấm dứt hoàn toàn → không thể bị nuôi nhốt nữa",
+                viet: "<strong>Giải thích chi tiết:</strong> Francione lập luận rằng tất cả các sinh vật có tri giác (sentient beings) chỉ nên có một quyền: quyền không bị đối xử như tài sản của con người. Ông tin cách tiếp cận này có ưu điểm là đơn giản, và vì nó sẽ <strong>chấm dứt hoàn toàn việc nuôi nhốt động vật (bring an end to captive animals altogether)</strong>. Điều đó có nghĩa là động vật có tri giác <strong>không thể bị nuôi trong lồng (cages)</strong> nữa. Vậy đáp án là <strong>A</strong>.<br><br>❌ <strong>Tại sao các đáp án khác sai:</strong><br>• B: Bài đọc nói \"make it illegal to breed any animals, including agricultural animals\" – cấm nhân giống, nhưng không nói \"any form of large-scale agriculture would cease to exist\" – đây là suy diễn quá xa.<br>• C: Francione không còn ủng hộ việc trao quyền cho vượn dựa trên cơ sở trí tuệ giống người; ông chỉ đề xuất một quyền duy nhất cho mọi sinh vật có tri giác.<br>• D: Bài đọc nói \"make it illegal to breed any animals, including ... even pets\" – cấm nhân giống, nhưng không nói \"people could no longer offer shelter to an animal\" – không có thông tin này.",
+                answer: "A. sentient animals could not be kept in cages."
+            },
+            // ===== Q35 =====
+            35: {
+                passage: "<em>\"<strong>Francione's approach is certainly several steps too far for many people.</strong>\"</em>",
+                synonym: "<span class='synonym-tag'>several steps too far for many people</span> <span class='synonym-arrow'>→</span> <span class='synonym-tag'>doubtful of its chances of being generally accepted</span><br>• \"several steps too far\" = đi quá xa, quá cực đoan<br>• \"for many people\" = với nhiều người → khó được chấp nhận rộng rãi",
+                viet: "<strong>Giải thích chi tiết:</strong> Cuối đoạn 7, người viết nhận xét: \"Cách tiếp cận của Francione chắc chắn là <strong>đi quá xa đối với nhiều người (several steps too far for many people)</strong>\". Điều này cho thấy người viết <strong>nghi ngờ khả năng được chấp nhận rộng rãi</strong> của lý thuyết này, vì nó quá cực đoan với số đông. Vậy đáp án là <strong>B</strong>.<br><br>❌ <strong>Tại sao các đáp án khác sai:</strong><br>• A: Người viết không nghi ngờ lý lẽ của Francione – bà ấy thừa nhận nó có logic (\"highlights a logical inconsistency\").<br>• C: Không có thông tin về việc người viết cảm thấy yên tâm bởi cách diễn đạt công bằng.<br>• D: Người viết không nói hài lòng với sự phát triển logic của nó – bà ấy chỉ ra nó quá xa với nhiều người.",
+                answer: "B. She is doubtful of its chances of being generally accepted."
+            },
+            // ===== Q36 =====
+            36: {
+                passage: "<em>\"He believes the emphasis should be on the <strong>obligations humans have towards other animals, both for their care and for their conservation</strong>.\"</em>",
+                synonym: "<span class='synonym-tag'>obligations humans have towards other animals ... for their care</span> <span class='synonym-arrow'>→</span> <span class='synonym-tag'>focusing on the way people look after animals</span><br>• \"obligations\" = nghĩa vụ, trách nhiệm<br>• \"for their care\" = việc chăm sóc chúng → \"the way people look after animals\"",
+                viet: "<strong>Giải thích chi tiết:</strong> de Waal nói rằng \"khái niệm quyền chỉ áp dụng cho những ai có khả năng thực hiện trách nhiệm trong xã hội của chúng ta\". Ông tin rằng <strong>trọng tâm nên đặt vào nghĩa vụ mà con người có đối với các loài động vật khác, cả về việc chăm sóc lẫn bảo tồn chúng</strong>. Điều này có nghĩa là ông thay đổi góc nhìn của cuộc thảo luận: thay vì nói về \"quyền\" của động vật, hãy nói về <strong>trách nhiệm của con người trong việc chăm sóc động vật</strong>. Vậy đáp án là <strong>A</strong>.<br><br>❌ <strong>Tại sao các đáp án khác sai:</strong><br>• B: de Waal nói quyền chỉ áp dụng cho những ai có khả năng thực hiện trách nhiệm – ông không đề xuất chỉ trao quyền cho động vật có ý thức đạo đức.<br>• C: Không liên quan đến việc xã hội nên có trách nhiệm với toàn nhân loại.<br>• D: Không nói bảo tồn loài nguy cấp phải đặt lên hàng đầu – ông nói về nghĩa vụ chăm sóc và bảo tồn nói chung.",
+                answer: "A. He recommends focusing on the way people look after animals."
+            },
+            // ===== Q37 =====
+            37: {
+                passage: "<em>Bài đọc <strong>không đề cập</strong> đến việc động vật có giá trị đặc biệt trong điều kiện nuôi nhốt có được bảo vệ bởi pháp luật nhiều hơn hay không. Bài chỉ nói về quyền pháp lý và quy chế đặc biệt cho loài vượn lớn nói chung.</em>",
+                synonym: "<span class='synonym-tag'>particularly valuable animals in captivity</span> <span class='synonym-arrow'>→</span> <span class='synonym-tag'>không có thông tin tương ứng trong bài</span><br>Bài đọc không hề nhắc đến \"giá trị\" (value) của động vật ảnh hưởng đến mức độ bảo vệ pháp lý.",
+                viet: "<strong>Giải thích chi tiết:</strong> Câu hỏi hỏi liệu \"động vật có giá trị đặc biệt trong điều kiện nuôi nhốt có nhiều khả năng được pháp luật bảo vệ hơn\" hay không. Bài đọc chỉ thảo luận về quyền pháp lý và quy chế đặc biệt cho loài vượn lớn nói chung, <strong>không hề đề cập</strong> đến việc giá trị của động vật (dù là giá trị kinh tế, khoa học hay bất kỳ giá trị nào) có ảnh hưởng đến mức độ bảo vệ pháp lý hay không. Vì không thể xác định được quan điểm của người viết về vấn đề này, đáp án là <strong>NOT GIVEN</strong>.",
+                answer: "NOT GIVEN"
+            },
+            // ===== Q38 =====
+            38: {
+                passage: "<em>\"Primatologist Frans de Waal ... says '<strong>The concept of rights applies only to those capable of carrying responsibilities within our society</strong>.' He believes the emphasis should be on the obligations humans have towards other animals.\"</em>",
+                synonym: "<span class='synonym-tag'>highlights the need to give human rights to higher order animals</span> <span class='synonym-arrow'>→</span> <span class='synonym-tag'>de Waal questions giving rights at all</span><br>• de Waal nói quyền chỉ áp dụng cho những ai có khả năng thực hiện trách nhiệm → ông <strong>đặt câu hỏi</strong> về việc trao quyền cho động vật, <strong>không</strong> ủng hộ việc trao quyền cho động vật bậc cao.",
+                viet: "<strong>Giải thích chi tiết:</strong> Câu hỏi nói rằng \"de Waal nhấn mạnh sự cần thiết phải trao quyền con người cho các loài động vật bậc cao\". Tuy nhiên, bài đọc cho thấy điều <strong>ngược lại</strong>: de Waal nói \"khái niệm quyền chỉ áp dụng cho những ai có khả năng thực hiện trách nhiệm trong xã hội của chúng ta\". Ông tin rằng trọng tâm nên là <strong>nghĩa vụ của con người</strong> đối với động vật, chứ không phải trao quyền cho động vật. Ông <strong>không</strong> nhấn mạnh việc trao quyền con người cho động vật bậc cao – thực tế ông còn đặt câu hỏi về khái niệm này. Vậy câu này <strong>mâu thuẫn</strong> với bài đọc → <strong>NO</strong>.",
+                answer: "NO"
+            },
+            // ===== Q39 =====
+            39: {
+                passage: "<em>\"Redmond ... suggests that applying GAP principles to wild populations might lead to <strong>increased penalties for killing apes or even give them land rights</strong>, though he admits the latter is unlikely.\"</em>",
+                synonym: "<span class='synonym-tag'>survival rate of the larger apes would increase</span> <span class='synonym-arrow'>→</span> <span class='synonym-tag'>không có thông tin tương ứng trong bài</span><br>Bài đọc chỉ nói về việc tăng hình phạt và có thể trao quyền đất đai, <strong>không</strong> nói gì đến tỷ lệ sống sót của vượn lớn.",
+                viet: "<strong>Giải thích chi tiết:</strong> Câu hỏi hỏi liệu \"nếu các nguyên tắc của GAP được áp dụng trong tự nhiên, tỷ lệ sống sót của vượn lớn sẽ tăng lên\". Bài đọc chỉ nói rằng Redmond gợi ý việc áp dụng các nguyên tắc GAP cho quần thể hoang dã có thể dẫn đến <strong>tăng hình phạt đối với việc giết hại vượn</strong> hoặc thậm chí <strong>trao quyền đất đai</strong> cho chúng. Tuy nhiên, bài đọc <strong>không hề đề cập</strong> đến \"tỷ lệ sống sót\" (survival rate) của vượn lớn. Vì không thể xác định được thông tin này, đáp án là <strong>NOT GIVEN</strong>.",
+                answer: "NOT GIVEN"
+            },
+            // ===== Q40 =====
+            40: {
+                passage: "<em>\"At the very least, an <strong>increased regard for the well-being of apes among people in western countries</strong> would lead to a <strong>decreased demand for animals being kidnapped from the wild</strong> and then exported to zoos, wildlife parks or private collectors.\"</em>",
+                synonym: "<span class='synonym-tag'>increased regard for the well-being of apes</span> <span class='synonym-arrow'>→</span> <span class='synonym-tag'>learned to consider apes' needs</span><br>• \"well-being\" = phúc lợi → \"needs\" (nhu cầu)<br><span class='synonym-tag'>decreased demand for animals being kidnapped from the wild</span> <span class='synonym-arrow'>→</span> <span class='synonym-tag'>fewer apes would be captured for sale</span><br>• \"kidnapped from the wild\" = bị bắt từ tự nhiên → \"captured\" (bị bắt)<br>• \"demand\" giảm → \"fewer\" (ít hơn)",
+                viet: "<strong>Giải thích chi tiết:</strong> Đoạn cuối nói rằng \"ít nhất, việc <strong>tăng cường quan tâm đến phúc lợi của vượn ở người dân các nước phương Tây</strong> sẽ dẫn đến <strong>giảm nhu cầu về động vật bị bắt từ tự nhiên</strong> và sau đó xuất khẩu đến sở thú, công viên động vật hoang dã hoặc nhà sưu tầm tư nhân\". Câu hỏi nói rằng nếu người dân các nước phương Tây học cách quan tâm đến nhu cầu của vượn, thì <strong>ít vượn hơn sẽ bị bắt để bán</strong>. Điều này <strong>hoàn toàn đồng nhất</strong> với thông tin trong bài: \"increased regard for well-being\" = \"learned to consider needs\"; \"decreased demand for animals being kidnapped from the wild\" = \"fewer apes would be captured for sale\". Vậy đáp án là <strong>YES</strong>.",
+                answer: "YES"
+            }
+        };
+
+        const data = explanations[qNum];
+        let status = (userAns === correctAns) ? "✅ Correct" : "❌ Incorrect";
+        let userDisplay = (userAns === "" || !userAns) ? "(not answered)" : userAns;
+
+        // Prefix "Câu XX:" at the beginning
+        let html = `<div style="margin-bottom:6px;"><span class="q-prefix">Câu ${qNum}</span>${status}</div>`;
+        html += `Your answer: <strong>${userDisplay}</strong> | Correct: <strong>${correctAns}</strong><br><br>`;
+        html += `📖 <strong>Trích dẫn từ bài đọc:</strong> ${data.passage}<br><br>`;
+        html += `🔗 <strong>Ghép từ đồng nghĩa (Synonym matching):</strong><br>${data.synonym}<br>`;
+        html += `<div class="viet-explain">${data.viet}</div>`;
+        return html;
+    }
+
+    function evaluateQuiz() {
+        if (submitted) return;
+        const user = collectAnswers();
+        let totalScore = 0;
+
+        // Evaluate 27-31 (summary) — each has its own exp-XX box
+        for (let i = 27; i <= 31; i++) {
+            const qKey = `q${i}`;
+            const correct = CORRECT[qKey];
+            const userAns = user[qKey];
+            if (userAns === correct) totalScore++;
+            const expDiv = document.getElementById(`exp-${i}`);
+            if (expDiv) {
+                expDiv.innerHTML = getExplanation(i, userAns, correct);
+                expDiv.classList.add("show");
+            }
+        }
+
+        // Answer key for 27-31
+        const summaryExp = document.getElementById("exp-summary");
+        if (summaryExp) {
+            summaryExp.innerHTML = `<strong>📋 Answer key (Questions 27–31):</strong><br>
+                27 = <strong>J</strong> (species) &nbsp;|&nbsp; 28 = <strong>D</strong> (regulations) &nbsp;|&nbsp;
+                29 = <strong>F</strong> (research) &nbsp;|&nbsp; 30 = <strong>B</strong> (well-being) &nbsp;|&nbsp;
+                31 = <strong>C</strong> (knowledge)`;
+            summaryExp.classList.add("show");
+        }
+
+        // Evaluate 32-36 (MC)
+        for (let i = 32; i <= 36; i++) {
+            const qKey = `q${i}`;
+            const correct = CORRECT[qKey];
+            const userAns = user[qKey];
+            if (userAns === correct) totalScore++;
+            const expDiv = document.getElementById(`exp-${i}`);
+            if (expDiv) {
+                expDiv.innerHTML = getExplanation(i, userAns, correct);
+                expDiv.classList.add("show");
+            }
+        }
+
+        // Evaluate 37-40 (YN/NG)
+        for (let i = 37; i <= 40; i++) {
+            const qKey = `q${i}`;
+            const correct = CORRECT[qKey];
+            const userAns = user[qKey];
+            if (userAns === correct) totalScore++;
+            const expDiv = document.getElementById(`exp-${i}`);
+            if (expDiv) {
+                expDiv.innerHTML = getExplanation(i, userAns, correct);
+                expDiv.classList.add("show");
+            }
+        }
+
+        document.getElementById("scoreDisplay").innerText = `${totalScore} / 14`;
+
+        // Disable inputs
+        document.querySelectorAll('select, input[type="radio"], .btn-submit').forEach(el => {
+            if (el.id !== "resetQuizBtn") el.disabled = true;
+        });
+        submitted = true;
+    }
+
+    function resetQuiz() {
+        submitted = false;
+        for (let i = 27; i <= 31; i++) {
+            const sel = document.getElementById(`select${i}`);
+            if (sel) sel.value = "";
+            const exp = document.getElementById(`exp-${i}`);
+            if (exp) exp.classList.remove("show");
+        }
+        for (let i = 32; i <= 40; i++) {
+            document.querySelectorAll(`input[name="q${i}"]`).forEach(r => r.checked = false);
+            const exp = document.getElementById(`exp-${i}`);
+            if (exp) exp.classList.remove("show");
+        }
+        const summaryExp = document.getElementById("exp-summary");
+        if (summaryExp) summaryExp.classList.remove("show");
+        // Enable all
+        document.querySelectorAll('select, input[type="radio"], .btn-submit').forEach(el => {
+            el.disabled = false;
+        });
+        document.getElementById("scoreDisplay").innerText = "0 / 14";
+    }
+
+    document.getElementById("submitBtn")?.addEventListener("click", evaluateQuiz);
+    document.getElementById("resetQuizBtn")?.addEventListener("click", resetQuiz);
+</script>
+</body>
+</html>
